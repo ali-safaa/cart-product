@@ -1,0 +1,258 @@
+* {
+     margin: 0;
+     padding: 0;
+     font-family: "Red Hat Text", serif;
+}
+
+body {
+     background-color: hsl(13, 31%, 94%);
+}
+
+.container__store {
+     display: flex;
+     align-items: start;
+     margin-top: 40px;
+     margin-left: 160px;
+}
+
+.container {
+     display: grid;
+     align-items: center;
+}
+
+.container > h1 {
+     font-weight: 600;
+     color: hsl(14, 65%, 9%);
+     margin-bottom: 20px;
+}
+
+.container-cards {
+     display: grid;
+     grid-template: repeat(3, 430px) / repeat(3, 300px);
+     column-gap: 40px;
+     background-color: white;
+     padding: 40px;
+     border-radius: 20px;
+}
+
+.card {
+     display: grid;
+     align-items: center;
+}
+
+.card > img {
+     width: 300px;
+     border-radius: 10px;
+}
+
+.card > .addToCart-btn {
+     border: 1px solid #c5baba;
+     background-color: white;
+     border-radius: 20px;
+     font-weight: 600;
+     position: relative;
+     top: -10px;
+     transition: 0.5s ease-in-out;
+     width: fit-content;
+     display: flex;
+     align-items: center;
+     padding: 5px 15px;
+     left: 50%;
+     transform: translate(-50%, -40%);
+     cursor: pointer;
+}
+
+.card > .addToCart-btn:hover {
+     border: 1px solid hsl(14, 86%, 42%);
+}
+
+.addToCart-btn > button {
+     border: none;
+     background-color: transparent;
+     padding: 3px 10px;
+     cursor: pointer;
+     transition: 0.5s ease-in-out;
+}
+
+.addToCart-btn > button:hover {
+     color: hsl(12, 20%, 44%);
+}
+
+.addToCart-btn > .decrement {
+     border: 1px solid;
+     border-radius: 20px;
+     cursor: pointer;
+     color: white;
+     padding: 5px;
+}
+
+.addToCart-btn > .decrement:hover {
+     background-color: white;
+     color: hsl(14, 86%, 42%);
+}
+
+.addToCart-btn > strong {
+     padding: 0 35px;
+     color: white;
+}
+
+.addToCart-btn > .increment {
+     border: 1px solid;
+     border-radius: 50%;
+     cursor: pointer;
+     color: white;
+     padding: 3px;
+}
+
+.addToCart-btn > .increment:hover {
+     background-color: white;
+     color: hsl(14, 86%, 42%);
+}
+
+.card h5 {
+     color: hsl(14, 25%, 72%);
+}
+
+.card h4 {
+     color: hsl(14, 65%, 9%);
+}
+
+.card span {
+     color: hsl(14, 86%, 42%);
+     font-weight: 600;
+     margin-bottom: 40px;
+}
+
+.cart-container {
+     display: grid;
+     align-items: center;
+     background-color: white;
+     border-radius: 10px;
+     width: fit-content;
+     margin-left: 40px;
+     width: clamp(500px, 5vw, 400px);
+}
+
+.cart-container > h2 {
+     color: hsl(14, 86%, 42%);
+     font-weight: 700;
+     padding-top: 20px;
+     padding-left: 20px;
+}
+
+.cart-container > svg {
+     width: 300px;
+     margin: 0 auto;
+     margin-top: 40px;
+}
+
+.cart-container > p {
+     color: hsl(12, 20%, 44%);
+     font-weight: 500;
+     margin: 40px auto;
+}
+
+.cart-info {
+     display: flex;
+     align-items: center;
+     margin: 20px;
+     justify-content: space-between;
+     border-bottom: 1px solid hsl(14, 25%, 72%);
+     padding-bottom: 20px;
+}
+.cart-info > svg {
+     width: 15px;
+     height: 15px;
+     border-radius: 50%;
+     border: 2px solid hsl(14, 25%, 72%);
+     padding: 3px;
+}
+
+.title-and-price {
+     display: grid;
+     align-items: center;
+}
+
+.title-and-price > h3 {
+     text-transform: capitalize;
+     font-weight: 700;
+     color: hsl(14, 65%, 9%);
+     margin-bottom: 10px;
+}
+
+.price-info {
+     display: flex;
+     align-items: center;
+}
+
+.price-info > .count-number {
+     color: hsl(14, 86%, 42%);
+     margin-right: 10px;
+     font-weight: 700;
+}
+
+.price-info > .price {
+     color: hsl(14, 25%, 72%);
+     margin-right: 10px;
+     font-weight: 500;
+}
+
+.price-info > .double-price {
+     color: hsl(12, 20%, 44%);
+     font-weight: 700;
+}
+
+.order {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     margin: 40px 20px;
+}
+
+.order > h4 {
+     text-transform: capitalize;
+     font-weight: 500;
+     color: hsl(14, 65%, 9%);
+}
+
+.order > h2 {
+     font-weight: 700;
+     color: hsl(14, 65%, 9%);
+}
+
+.cart-container > p {
+     background-color: hsl(13, 31%, 94%);
+     border-radius: 10px;
+     padding: 20px 80px;
+     color: hsl(14, 65%, 9%);
+     font-weight: 500;
+     font-size: 15px;
+}
+
+.cart-container > p > span {
+     color: hsl(14, 65%, 9%);
+     font-weight: 700;
+}
+
+.cart-container > button {
+     background-color: hsl(14, 86%, 42%);
+     border-radius: 20px;
+     font-weight: 500;
+     color: white;
+     padding: 20px 120px;
+     width: fit-content;
+     margin: 0 auto;
+     border: none;
+     margin-bottom: 40px;
+}
+
+.attribution {
+     padding-left: 20px;
+     padding-bottom: 20px;
+}
+.attribution a {
+     text-decoration: none;
+     color: #bcbbbb;
+     font-size: 12px;
+     line-height: 0.2;
+}
