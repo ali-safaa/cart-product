@@ -128,7 +128,6 @@ body {
      align-items: center;
      background-color: white;
      border-radius: 10px;
-     width: fit-content;
      margin-left: 40px;
      width: clamp(500px, 5vw, 400px);
 }
@@ -152,7 +151,7 @@ body {
      margin: 40px auto;
 }
 
-.cart-info {
+.cart-info-and-quantity {
      display: flex;
      align-items: center;
      margin: 20px;
@@ -160,7 +159,7 @@ body {
      border-bottom: 1px solid hsl(14, 25%, 72%);
      padding-bottom: 20px;
 }
-.cart-info > svg {
+.cart-info-and-quantity > svg {
      width: 15px;
      height: 15px;
      border-radius: 50%;
@@ -180,7 +179,7 @@ body {
      margin-bottom: 10px;
 }
 
-.price-info {
+.price-info-and-quantity {
      display: flex;
      align-items: center;
 }

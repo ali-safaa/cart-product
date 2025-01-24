@@ -1,5 +1,8 @@
 const containerCard = document.querySelector("[data-containerCard]");
 const cart_container = document.querySelector("[data-cart-container]");
+const container_cart_info = document.querySelector(
+     "[data-container-cart-info]"
+);
 
 let products = [];
 let cart = [];
@@ -12,6 +15,7 @@ fetch("./data.json")
      });
 
 function getData() {
+     containerCard.innerHTML = "";
      for (let i = 0; i < products.length; i++) {
           const card = document.createElement("div");
           card.classList.add("card");
@@ -88,6 +92,7 @@ function changeButton(e, card) {
 
 function checkingID(parentId) {
      const findingIndex = cart.findIndex((cart) => cart.parentId === parentId);
+
      if (findingIndex !== -1) {
           cart[findingIndex].quantity++;
      } else {
@@ -101,37 +106,56 @@ function checkingID(parentId) {
 }
 
 function getCartData() {
-     for (let i = 0; i < cart.length; i++) {
+     cart_container.innerHTML = "";
+     cart.forEach((cart) => {
           const findIndex = products.findIndex(
-               (item) => item.name === cart[i].parentId
+               (item) => item.name === cart.parentId
           );
 
           if (findIndex !== -1) {
-               console.log(products[findIndex]);
-          } else {
-               console.log("not found");
+               const cart_info = document.createElement("div");
+               cart_info.classList.add("cart-info-and-quantity");
+               // cart_container.innerHTML += `
+               // <h2>Your Cart (0)</h2>
+               // `;
+               cart_info.innerHTML = `
+               <div class="title-and-price">
+                              <h3>${products[findIndex].name}</h3>
+                              <div class="price-info-and-quantity">
+                                   <h4 class="count-number">${cart.quantity}</h4>
+                                   <h4 class="price"></h4>
+                                   <h4 class="double-price">
+                                  
+                                   </h4>
+                              </div>
+                         </div>
+                         <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="10"
+                              height="10"
+                              fill="none"
+                              viewBox="0 0 10 10"
+                         >
+                              <path
+                                   fill="#CAAFA7"
+                                   d="M8.375 9.375 5 6 1.625 9.375l-1-1L4 5 .625 1.625l1-1L5 4 8.375.625l1 1L6 5l3.375 3.375-1 1Z"
+                              />
+                         </svg>
+                    </div>
+               `;
+               cart_container.innerHTML += `
+               <h2>Your Cart (0)</h2>
+               `;
+               container_cart_info.appendChild(cart_info);
+
+               cart_container.innerHTML += `
+               <div class="order">
+               <h4>order total</h4>
+               <h2>$46.50</h2>
+               </div>
+               <p>this is a <span>carbon-neutral</span> delivery</p>
+               <button>confirm order</button>
+               `;
           }
-     }
+     });
 }
-
-// cart_container.innerHTML = `
-// <h2>your cart(0)</h2>
-// <div class="cart-info">
-//    <div class="title-and-price">
-//        <h3>${card_name.textContent}</h3>
-//            <div class="price-info">
-//                <h4 class="count-number">1x</h4>
-//                <h4 class="price">@${card_price.textContent}</h4>
-//                <h4 class="double-price">${card_price.textContent}</h4>
-//           </div>
-//    </div>
-//    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 10"><path fill="#CAAFA7" d="M8.375 9.375 5 6 1.625 9.375l-1-1L4 5 .625 1.625l1-1L5 4 8.375.625l1 1L6 5l3.375 3.375-1 1Z"/></svg>
-// </div>
-
-// <div class="order">
-// <h4>order total</h4>
-// <h2>$46.50</h2>
-// </div>
-// <p>this is a <span>carbon-neutral</span> delivery</p>
-// <button>confirm order</button>
-// `;
