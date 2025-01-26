@@ -107,55 +107,79 @@ function checkingID(parentId) {
 
 function getCartData() {
      cart_container.innerHTML = "";
-     cart.forEach((cart) => {
+     const containerInfo = document.createElement("div");
+     containerInfo.classList.add("containerInfo");
+
+     for (let i = 0; i < cart.length; i++) {
+          cart_container.innerHTML = `<h2>your cart(${i})</h2>`;
+
           const findIndex = products.findIndex(
-               (item) => item.name === cart.parentId
+               (product) => product.name === cart[i].parentId
           );
 
           if (findIndex !== -1) {
-               const cart_info = document.createElement("div");
-               cart_info.classList.add("cart-info-and-quantity");
-               // cart_container.innerHTML += `
-               // <h2>Your Cart (0)</h2>
-               // `;
-               cart_info.innerHTML = `
-               <div class="title-and-price">
-                              <h3>${products[findIndex].name}</h3>
-                              <div class="price-info-and-quantity">
-                                   <h4 class="count-number">${cart.quantity}</h4>
-                                   <h4 class="price"></h4>
-                                   <h4 class="double-price">
-                                  
-                                   </h4>
-                              </div>
-                         </div>
-                         <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="10"
-                              height="10"
-                              fill="none"
-                              viewBox="0 0 10 10"
-                         >
-                              <path
-                                   fill="#CAAFA7"
-                                   d="M8.375 9.375 5 6 1.625 9.375l-1-1L4 5 .625 1.625l1-1L5 4 8.375.625l1 1L6 5l3.375 3.375-1 1Z"
-                              />
-                         </svg>
-                    </div>
-               `;
-               cart_container.innerHTML += `
-               <h2>Your Cart (0)</h2>
-               `;
-               container_cart_info.appendChild(cart_info);
+               const info = document.createElement("div");
+               const formating = products[findIndex].price * cart[i].quantity;
 
+               info.classList.add("info");
+               info.innerHTML = `
+               <div class="title-and-price">
+                <h3>${products[findIndex].name}</h3>
+                <div class="price-info-and-quantity">
+                     <h4 class="count-number">${cart[i].quantity}x</h4>
+                     <h4 class="price">@ $${products[findIndex].price.toFixed(
+                          2
+                     )}</h4>
+                     <h4 class="double-price">$${formating.toFixed(2)}</h4>
+                </div>
+           </div>
+           <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="10"
+                height="10"
+                fill="none"
+                viewBox="0 0 10 10"
+           >
+                <path
+                     fill="#CAAFA7"
+                     d="M8.375 9.375 5 6 1.625 9.375l-1-1L4 5 .625 1.625l1-1L5 4 8.375.625l1 1L6 5l3.375 3.375-1 1Z"
+                />
+           </svg>
+               `;
+
+               containerInfo.appendChild(info);
+               cart_container.appendChild(containerInfo);
                cart_container.innerHTML += `
-               <div class="order">
-               <h4>order total</h4>
-               <h2>$46.50</h2>
-               </div>
-               <p>this is a <span>carbon-neutral</span> delivery</p>
-               <button>confirm order</button>
+                <p>this is a <span>carbon-neutral</span> delivery</p>
+                <div class="order-total">
+                <h3>Order Total:</h3>
+                <h4>${products[findIndex].price.toFixed(2)}</h4>
+                </div>
+               
+               <button>Confirm Order</button>
                `;
           }
-     });
+     }
 }
+
+// const cart_info = document.createElement("div");
+// cart_info.classList.add("cart-info-and-quantity");
+//  cart_container.innerHTML += `
+//  <h2>Your Cart (0)</h2>
+//  `;
+// cart_info.innerHTML = `
+//
+// `;
+// cart_container.innerHTML += `
+// <h2>Your Cart (0)</h2>
+// `;
+// container_cart_info.appendChild(cart_info);
+
+// cart_container.innerHTML += `
+// <div class="order">
+// <h4>order total</h4>
+// <h2>$46.50</h2>
+// </div>
+
+// <button>confirm order</button>
+// `;

@@ -137,6 +137,7 @@ body {
      font-weight: 700;
      padding-top: 20px;
      padding-left: 20px;
+     text-transform: capitalize;
 }
 
 .cart-container > svg {
@@ -151,7 +152,7 @@ body {
      margin: 40px auto;
 }
 
-.cart-info-and-quantity {
+.info {
      display: flex;
      align-items: center;
      margin: 20px;
@@ -159,7 +160,7 @@ body {
      border-bottom: 1px solid hsl(14, 25%, 72%);
      padding-bottom: 20px;
 }
-.cart-info-and-quantity > svg {
+.info > svg {
      width: 15px;
      height: 15px;
      border-radius: 50%;
@@ -184,39 +185,41 @@ body {
      align-items: center;
 }
 
-.price-info > .count-number {
+.price-info-and-quantity > .count-number {
      color: hsl(14, 86%, 42%);
      margin-right: 10px;
      font-weight: 700;
 }
 
-.price-info > .price {
+.price-info-and-quantity > .price {
      color: hsl(14, 25%, 72%);
      margin-right: 10px;
      font-weight: 500;
 }
 
-.price-info > .double-price {
+.price-info-and-quantity > .double-price {
      color: hsl(12, 20%, 44%);
      font-weight: 700;
 }
 
-.order {
+.order-total {
      display: flex;
      align-items: center;
      justify-content: space-between;
      margin: 40px 20px;
 }
 
-.order > h4 {
+.order-total > h3 {
      text-transform: capitalize;
      font-weight: 500;
      color: hsl(14, 65%, 9%);
+     font-size: 15px;
 }
 
-.order > h2 {
+.order-total h4 {
      font-weight: 700;
-     color: hsl(14, 65%, 9%);
+     color: rgb(52, 42, 42);
+     font-size: 20px;
 }
 
 .cart-container > p {
