@@ -37,10 +37,12 @@ function getData() {
 
 function changeButton(e, card) {
      // Find the closest parent element with the "addToCart-btn" class
-     const addToCart_btn = e.target.closest(".addToCart-btn");
+     const add_to_cart = e.target.classList.contains("add-to-cart");
+     const addToCart_btn = card.querySelector(".addToCart-btn");
 
-     if (addToCart_btn) {
+     if (add_to_cart) {
           // Replace the button's content with updated SVGs and styles
+
           addToCart_btn.innerHTML = `
              <svg
                 class="decrement"
@@ -53,7 +55,7 @@ function changeButton(e, card) {
                      fill="currentColor"
                      d="M0 .375h10v1.25H0V.375Z"/>
             </svg>
-                <strong>1</strong>
+                <strong>0</strong>
                 <svg
                          class="increment"
                          xmlns="http://www.w3.org/2000/svg"
@@ -73,34 +75,59 @@ function changeButton(e, card) {
           const card_image = card.querySelector(".card-image");
           const card_name = card.querySelector("h4").textContent;
 
+          const parentId = card_name;
+
           // Style changes
           addToCart_btn.style.backgroundColor = "hsl(14, 86%, 42%)";
           card_image.style.border = "2px solid hsl(14, 86%, 42%)";
 
           // Retrieve the parent ID
-          const parentId = card_name;
-          addToCart_btn.style.cursor = "not-allowed";
+          // add_to_cart.style.cursor = "not-allowed";
 
-          // Find the SVG elements inside the button
-          // const svg_iconPlus = addToCart_btn.querySelector(".increment");
-          // const svg_iconMinus = addToCart_btn.querySelector(".decrement");
-          // const strongElement = addToCart_btn.querySelector("strong");
+          const svg_iconMinus = addToCart_btn.querySelector(".decrement");
+          const svg_iconPlus = addToCart_btn.querySelector(".increment");
+          const strongElement = addToCart_btn.querySelector("strong");
 
-          checkingID(parentId);
+          svg_iconPlus.addEventListener("click", () => {
+               checkingID(parentId, strongElement, "increment");
+          });
+
+          svg_iconMinus.addEventListener("click", () => {
+               checkingID(parentId, strongElement, "decrement");
+          });
+
+          checkingID(parentId, strongElement, "increment");
      }
 }
 
-function checkingID(parentId) {
+function checkingID(parentId, strongElement, action) {
      const findingIndex = cart.findIndex((cart) => cart.parentId === parentId);
 
-     if (findingIndex !== -1) {
-          cart[findingIndex].quantity++;
-     } else {
-          cart.push({
-               parentId,
-               quantity: 1,
-          });
+     // if action in increment mean the quanitity++
+     if (action === "increment") {
+          if (findingIndex !== -1) {
+               cart[findingIndex].quantity++;
+          } else {
+               cart.push({
+                    parentId,
+                    quantity: 1,
+               });
+          }
+
+          // if action decrement mean the quanitity-- and if 0 will remove
+     } else if (action === "decrement") {
+          if (findingIndex !== -1) {
+               cart[findingIndex].quantity--;
+               if (cart[findingIndex].quantity <= 0) {
+                    cart.splice(findingIndex, 1);
+               }
+          }
      }
+
+     const currentItem = cart.find(
+          (cartItem) => cartItem.parentId === parentId
+     );
+     strongElement.textContent = currentItem ? currentItem.quantity : 0;
 
      getCartData();
 }
@@ -123,7 +150,7 @@ function getCartData() {
 
                info.classList.add("info");
                info.innerHTML = `
-               <div class="title-and-price">
+            <div class="title-and-price">
                 <h3>${products[findIndex].name}</h3>
                 <div class="price-info-and-quantity">
                      <h4 class="count-number">${cart[i].quantity}x</h4>
@@ -134,6 +161,7 @@ function getCartData() {
                 </div>
            </div>
            <svg
+           class="removeIcon"
                 xmlns="http://www.w3.org/2000/svg"
                 width="10"
                 height="10"
@@ -158,28 +186,10 @@ function getCartData() {
                
                <button>Confirm Order</button>
                `;
+               const removeIcon = document.querySelector(".removeIcon");
+               console.log(removeIcon);
+
+               removeIcon.addEventListener("click", () => {});
           }
      }
 }
-
-// const cart_info = document.createElement("div");
-// cart_info.classList.add("cart-info-and-quantity");
-//  cart_container.innerHTML += `
-//  <h2>Your Cart (0)</h2>
-//  `;
-// cart_info.innerHTML = `
-//
-// `;
-// cart_container.innerHTML += `
-// <h2>Your Cart (0)</h2>
-// `;
-// container_cart_info.appendChild(cart_info);
-
-// cart_container.innerHTML += `
-// <div class="order">
-// <h4>order total</h4>
-// <h2>$46.50</h2>
-// </div>
-
-// <button>confirm order</button>
-// `;

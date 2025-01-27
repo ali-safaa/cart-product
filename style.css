@@ -155,10 +155,9 @@ body {
 .info {
      display: flex;
      align-items: center;
-     margin: 20px;
      justify-content: space-between;
      border-bottom: 1px solid hsl(14, 25%, 72%);
-     padding-bottom: 20px;
+     padding: 20px;
 }
 .info > svg {
      width: 15px;
@@ -206,7 +205,8 @@ body {
      display: flex;
      align-items: center;
      justify-content: space-between;
-     margin: 40px 20px;
+     margin: 0 20px;
+     margin-bottom: 40px;
 }
 
 .order-total > h3 {
