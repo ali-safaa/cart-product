@@ -165,6 +165,7 @@ body {
      border-radius: 50%;
      border: 2px solid hsl(14, 25%, 72%);
      padding: 3px;
+     cursor: pointer;
 }
 
 .title-and-price {
@@ -201,6 +202,11 @@ body {
      font-weight: 700;
 }
 
+.footer {
+     display: grid;
+     align-items: center;
+}
+
 .order-total {
      display: flex;
      align-items: center;
@@ -222,21 +228,23 @@ body {
      font-size: 20px;
 }
 
-.cart-container > p {
+.footer > p {
      background-color: hsl(13, 31%, 94%);
      border-radius: 10px;
      padding: 20px 80px;
      color: hsl(14, 65%, 9%);
      font-weight: 500;
      font-size: 15px;
+     width: fit-content;
+     margin: 20px auto;
 }
 
-.cart-container > p > span {
+.footer > p > span {
      color: hsl(14, 65%, 9%);
      font-weight: 700;
 }
 
-.cart-container > button {
+.footer > button {
      background-color: hsl(14, 86%, 42%);
      border-radius: 20px;
      font-weight: 500;

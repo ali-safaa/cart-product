@@ -103,7 +103,7 @@ function changeButton(e, card) {
 function checkingID(parentId, strongElement, action) {
      const findingIndex = cart.findIndex((cart) => cart.parentId === parentId);
 
-     // if action in increment mean the quanitity++
+     // if action increment mean the quanitity++
      if (action === "increment") {
           if (findingIndex !== -1) {
                cart[findingIndex].quantity++;
@@ -134,12 +134,16 @@ function checkingID(parentId, strongElement, action) {
 
 function getCartData() {
      cart_container.innerHTML = "";
+
+     const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+     const header = document.createElement("h2");
+     header.textContent = `Your Cart (${totalQuantity})`;
+     cart_container.appendChild(header);
+
      const containerInfo = document.createElement("div");
      containerInfo.classList.add("containerInfo");
 
      for (let i = 0; i < cart.length; i++) {
-          cart_container.innerHTML = `<h2>your cart(${i})</h2>`;
-
           const findIndex = products.findIndex(
                (product) => product.name === cart[i].parentId
           );
@@ -175,21 +179,45 @@ function getCartData() {
            </svg>
                `;
 
-               containerInfo.appendChild(info);
-               cart_container.appendChild(containerInfo);
-               cart_container.innerHTML += `
-                <p>this is a <span>carbon-neutral</span> delivery</p>
-                <div class="order-total">
-                <h3>Order Total:</h3>
-                <h4>${products[findIndex].price.toFixed(2)}</h4>
-                </div>
-               
-               <button>Confirm Order</button>
-               `;
-               const removeIcon = document.querySelector(".removeIcon");
-               console.log(removeIcon);
+               const removeIcon = info.querySelector(".removeIcon");
 
-               removeIcon.addEventListener("click", () => {});
+               removeIcon.addEventListener("click", () => removeID(findIndex));
+
+               containerInfo.appendChild(info);
           }
      }
+
+     function removeID(index) {
+          if (cart[index].quantity > 0) {
+               cart.splice(index, 1);
+          }
+     }
+
+     cart_container.appendChild(containerInfo);
+     const footer = document.createElement("div");
+
+     footer.classList.add("footer");
+
+     footer.innerHTML = `
+        <p>this is a <span>carbon-neutral</span> delivery</p>
+        <div class="order-total">
+            <h3>Order Total:</h3>
+            <h4>${cart
+                 .reduce((sum, item) => {
+                      const findIndex = products.findIndex(
+                           (product) => product.name === item.parentId
+                      );
+                      return (
+                           sum +
+                           (findIndex !== -1
+                                ? products[findIndex].price * item.quantity
+                                : 0)
+                      );
+                 }, 0)
+                 .toFixed(2)}</h4>
+        </div>
+        <button>Confirm Order</button>
+    `;
+
+     cart_container.appendChild(footer);
 }
