@@ -6,7 +6,6 @@ const container_cart_info = document.querySelector(
 
 let products = [];
 let cart = [];
-let currentIndex = 0;
 
 fetch("./data.json")
      .then((res) => res.json())
@@ -238,6 +237,7 @@ function getCartData() {
 }
 
 setTimeout(() => {
+     let currentIndex = 0;
      const dots = document.querySelectorAll(".dot");
      const cards = document.querySelectorAll(".card");
 
